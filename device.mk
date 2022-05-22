@@ -24,7 +24,7 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 
-TARGET_RECOVERY_DEVICE_MODULES += libion libandroidicu vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti
+TARGET_RECOVERY_DEVICE_MODULES += libion vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -39,23 +39,18 @@ TW_INCLUDE_REPACKTOOLS := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_DEFAULT_BRIGHTNESS := 1200
-TW_Y_OFFSET := 91
-TW_H_OFFSET := -91
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
 TW_NO_SCREEN_BLANK := true
+TW_EXCLUDE_APEX := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so
-
-PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/alioth/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
-
-# Common
 
 # A/B
 TARGET_IS_VAB := true
